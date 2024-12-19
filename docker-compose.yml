@@ -1,0 +1,14 @@
+name: Ethereum PHP
+
+services:
+  ganache:
+    image: trufflesuite/ganache-cli:latest
+    ports:
+      - target: 8545
+        published: 8545
+        protocol: tcp
+        mode: host
+
+networks:
+  default:
+    name: ethereum-php-network
