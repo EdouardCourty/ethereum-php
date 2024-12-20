@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EthereumPHP\Utils;
 
 /**
@@ -85,9 +87,9 @@ class ValueExtractor
     /**
      * Extracts a value as a numeric string.
      *
+     * @throws \InvalidArgumentException
      * @return numeric-string
      *
-     * @throws \InvalidArgumentException
      */
     public static function getNumericString(bool|int|float|array|string $value): string
     {

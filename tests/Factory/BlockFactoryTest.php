@@ -38,11 +38,28 @@ class BlockFactoryTest extends TestCase
             'gasLimit' => '0x16',
             'gasUsed' => '0x17',
             'timestamp' => '0x67643915',
-            'transactions' => [],
-            'uncles' => []
+            'transactions' => [
+                [
+                    'blockHash' => '0x2',
+                    'blockNumber' => '0x3',
+                    'from' => '0x5',
+                    'gas' => '0x9',
+                    'gasPrice' => '0x8',
+                    'hash' => '0x0703636b2bfc3b3907adc9e7687e61c6caddde95917620ab0a519be078d25061',
+                    'input' => '0x11',
+                    'nonce' => '0x12',
+                    'to' => '0x6',
+                    'transactionIndex' => '0x4',
+                    'value' => '0x7',
+                    'v' => '0x27',
+                    'r' => '0x12',
+                    's' => '0x13',
+                ],
+            ],
+            'uncles' => [],
         ];
 
-        $block = BlockFactory::create($data);
+        $block = BlockFactory::create($data, true);
 
         $this->assertEquals(1, $block->number);
         $this->assertEquals('0x2', $block->hash);
@@ -61,7 +78,7 @@ class BlockFactoryTest extends TestCase
         $this->assertEquals('22', $block->gasLimit);
         $this->assertEquals('23', $block->gasUsed);
         $this->assertInstanceOf(\DateTimeImmutable::class, $block->timestamp);
-        $this->assertEquals([], $block->transactions);
+        $this->assertCount(1, $block->transactions);
         $this->assertEquals([], $block->uncles);
     }
 }

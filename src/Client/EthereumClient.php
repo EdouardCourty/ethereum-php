@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace EthereumPHP\Client;
 
+use EthereumPHP\DTO\Block;
 use EthereumPHP\DTO\Transaction;
 use EthereumPHP\DTO\TransactionReceipt;
 use EthereumPHP\Factory\BlockFactory;
-use EthereumPHP\DTO\Block;
 use EthereumPHP\Factory\TransactionFactory;
 use EthereumPHP\Factory\TransactionReceiptFactory;
 use EthereumPHP\Utils\NumberFormatter;
@@ -239,14 +239,14 @@ readonly class EthereumClient
     {
         $response = ValueExtractor::getArray($this->jsonRpcClient->request('eth_getBlockByHash', [$blockHash, $withTransactions]));
 
-        return BlockFactory::create($response);
+        return BlockFactory::create($response, $withTransactions);
     }
 
     public function getBlockByNumber(string|int $blockNumber, bool $withTransactions = false): Block
     {
         $response = ValueExtractor::getArray($this->jsonRpcClient->request('eth_getBlockByNumber', [$blockNumber, $withTransactions]));
 
-        return BlockFactory::create($response);
+        return BlockFactory::create($response, $withTransactions);
     }
 
     public function getLastBlock(bool $withTransactions = false): Block
@@ -286,14 +286,14 @@ readonly class EthereumClient
     {
         $response = ValueExtractor::getArray($this->jsonRpcClient->request('eth_getUncleByBlockHashAndIndex', [$blockHash, $index]));
 
-        return BlockFactory::create($response);
+        return BlockFactory::create($response,false);
     }
 
     public function getUncleByBlockNumberAndIndex(string|int $blockNumber, int $index): Block
     {
         $response = ValueExtractor::getArray($this->jsonRpcClient->request('eth_getUncleByBlockNumberAndIndex', [$blockNumber, $index]));
 
-        return BlockFactory::create($response);
+        return BlockFactory::create($response, false);
     }
 
     /**

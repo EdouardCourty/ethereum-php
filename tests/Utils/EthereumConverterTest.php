@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace EthereumPHP\Tests\Utils;
 
 use EthereumPHP\Utils\EthereumConverter;
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \EthereumPHP\Utils\EthereumConverter

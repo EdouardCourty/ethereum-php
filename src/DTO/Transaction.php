@@ -6,6 +6,8 @@ namespace EthereumPHP\DTO;
 
 /**
  * @author Edouard Courty <edouard.courty2@gmail.com>
+ *
+ * @codeCoverageIgnore
  */
 class Transaction
 {
@@ -18,7 +20,7 @@ class Transaction
     public string $input;
     public string $nonce;
     public ?string $to = null;
-    public ?int $transactionIndex;
+    public ?int $transactionIndex = null;
     public string $value; // Wei
     public int $v; // ECDSA Recovery ID
     public string $r; // ECDSA Signature R

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace EthereumPHP\Utils;
 
 /**
- * Ensures formatting is always done the same way.
+ * Handles formatting for precise numbers and hex values.
+ *
+ * @note Handling of float|int values is not recommended due to precision loss (and integer max size).
  *
  * @author Edouard Courty <edouard.courty2@gmail.com>
  */
@@ -25,5 +27,12 @@ class NumberFormatter
         $balanceGMP = gmp_init($hex, 16);
 
         return gmp_strval($balanceGMP);
+    }
+
+    public static function numericToHex(string $wei): string
+    {
+        $balanceGMP = gmp_init($wei);
+
+        return '0x' . gmp_strval($balanceGMP, 16);
     }
 }

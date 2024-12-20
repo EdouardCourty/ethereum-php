@@ -7,6 +7,8 @@ namespace EthereumPHP\Utils;
 /**
  * Converts Ethereum units.
  *
+ * @note This class only accepts strings as input to avoid floating point precision issues. All calculations are done using BCMath.
+ *
  * @author Edouard Courty <edouard.courty2@gmail.com>
  */
 class EthereumConverter
@@ -100,8 +102,6 @@ class EthereumConverter
 
     /**
      * Validates if the input is a numeric string.
-     *
-     * @param string $value
      */
     private static function validateNumeric(string $value, string $name): void
     {

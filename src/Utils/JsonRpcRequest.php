@@ -15,7 +15,7 @@ readonly class JsonRpcRequest
         private string $id,
         private string $method,
         private array $params,
-        private string $version = self::JSON_RPC_VERSION
+        private string $version = self::JSON_RPC_VERSION,
     ) {
     }
 

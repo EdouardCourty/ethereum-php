@@ -6,6 +6,8 @@ namespace EthereumPHP\DTO;
 
 /**
  * @author Edouard Courty <edouard.courty2@gmail.com>
+ *
+ * @codeCoverageIgnore
  */
 class TransactionReceipt
 {

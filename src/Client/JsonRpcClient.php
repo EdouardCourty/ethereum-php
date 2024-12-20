@@ -13,15 +13,15 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 /**
  * @author Edouard Courty <edouard.courty2@gmail.com>
  */
-class JsonRpcClient
+readonly class JsonRpcClient
 {
     private const int DEFAULT_TIMEOUT = 10;
 
     private HttpClientInterface $httpClient;
 
-    public function __construct(private readonly string $url)
+    public function __construct(string $url)
     {
-        $this->httpClient = HttpClient::create();
+        $this->httpClient = HttpClient::createForBaseUri($url);
     }
 
     public function request(string $method, array $params = [], int $timeout = self::DEFAULT_TIMEOUT): bool|string|int|float|array
@@ -29,7 +29,7 @@ class JsonRpcClient
         $requestPayload = new JsonRpcRequest(UuidGenerator::v4(), $method, $params);
 
         try {
-            $response = $this->httpClient->request('POST', $this->url, [
+            $response = $this->httpClient->request('POST', '/', [
                 'json' => $requestPayload->toArray(),
                 'timeout' => $timeout,
             ]);

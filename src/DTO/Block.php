@@ -6,10 +6,12 @@ namespace EthereumPHP\DTO;
 
 /**
  * @author Edouard Courty <edouard.courty2@gmail.com>
+ *
+ * @codeCoverageIgnore
  */
 class Block
 {
-    public ?int $number;
+    public ?int $number = null;
     public ?string $hash = null;
     public string $parentHash;
     public ?string $nonce = null;
@@ -26,6 +28,8 @@ class Block
     public string $gasLimit;
     public string $gasUsed;
     public \DateTimeImmutable $timestamp;
+    /** @var Transaction[]|string[] */
     public array $transactions = [];
+    /** @var string[] $uncles */
     public array $uncles = [];
 }

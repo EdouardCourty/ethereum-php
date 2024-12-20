@@ -33,7 +33,7 @@ class TransactionFactoryTest extends TestCase
             'value' => '0x7',
             'v' => '0x27',
             'r' => '0x12',
-            's' => '0x13'
+            's' => '0x13',
         ];
 
         $transaction = TransactionFactory::create($data);
