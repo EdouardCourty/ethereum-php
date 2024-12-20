@@ -1,12 +1,14 @@
 # Ethereum PHP
 
+[![PHP CI](https://github.com/EdouardCourty/ethereum-php/actions/workflows/php_ci.yml/badge.svg)](https://github.com/EdouardCourty/ethereum-php/actions/workflows/php_ci.yml)
+
 Ethereum PHP allows you to interact with the Ethereum blockchain using PHP. <br/>
 All you need to start is a running Ethereum node, with the JSON-RPC interface enabled. <br/>
 
 ### Installation
 
 Install this package using composer:
-```bash
+```shell
 composer require ecourty/ethereum-php
 ```
 
@@ -40,6 +42,11 @@ $weiAmount = 14500000789000000;
 $etherAmount = EthereumConverter::weiToEther($weiAmount);
 $gweiAmount = EthereumConverter::weiToGwei($weiAmount);
 ```
+
+### Remarks
+
+Precise numbers such as WEI / GWEI / ETHER amounts are represented as strings instead of `float` or `int` to avoid precision loss. <br/>
+The `bcmath` extension is needed for this library to work.
 
 ### Features
 
