@@ -52,7 +52,7 @@ readonly class EthereumClient
 
     public function getPeerCount(): int
     {
-        return ValueExtractor::getInt($this->jsonRpcClient->request('net_peerCount'));
+        return ValueExtractor::hexToInt($this->jsonRpcClient->request('net_peerCount'));
     }
 
     public function getProtocolVersion(): int
@@ -102,7 +102,15 @@ readonly class EthereumClient
         return ValueExtractor::getArray($this->jsonRpcClient->request('eth_accounts'));
     }
 
+    /**
+     * @deprecated Use ::getCurrentBlockNumber instead.
+     */
     public function getCurrentBlock(): int
+    {
+        return $this->getCurrentBlockNumber();
+    }
+
+    public function getCurrentBlockNumber(): int
     {
         return ValueExtractor::hexToInt($this->jsonRpcClient->request('eth_blockNumber'));
     }
@@ -225,7 +233,7 @@ readonly class EthereumClient
      *     to?: string,
      *     gas?: int,
      *     gasPrice?: int,
-     *     value?: int,
+     *     value?: int|string|numeric-string,
      *     input?: string,
      *     nonce?: int
      * } $transaction
